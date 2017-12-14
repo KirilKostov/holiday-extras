@@ -1,12 +1,28 @@
+function createFlickrBox(item) {
+  var template = $('.flickr-box-template').clone(),
+      authorUrl = 'https://www.flickr.com/photos/' + item.author_id,
+      authorName = item.author.match(/\("(.*)"\)/)[1],
+      tags = item.tags.trim().split(' ').join(', ');
+
+  template.find('img').attr('src', item.media.m);
+  template.find('.photo-title').attr('href', item.link).text(item.title);
+  template.find('.author').attr('href', authorUrl).text(authorName);
+  template.find('.description').html(item.description.trim());
+  template.find('.tags span').text(tags);
+  template.removeClass('flickr-box-template').addClass('flickr-box');
+
+  return template;
+}
+
+function appendToContainer(i, item) {
+  var flickrContainer = '#image-container',
+      flickrBox = createFlickrBox(item);
+
+  flickrBox.appendTo(flickrContainer);
+};
+
 function jsonFlickrFeed(json) {
-  $.each(json.items, function(i, item) {
-    $('<img />').attr('src', item.media.m).appendTo('#image-section');
-    $('<a>', { className: 'photo-title', href: item.link, text: item.title } ).appendTo("#image-section");
-    $('<span>' , { text: 'by'}).appendTo('#image-section');
-    $('<a>', { className: 'author-name', href: 'https://www.flickr.com/photos/' + item.author_id, text: item.author } ).appendTo("#image-section");
-    $('<p>', { className: 'description', text: item.description.trim() } ).appendTo("#image-section");
-    $('<p>', { className: 'tags', text: 'Tags: ' + item.tags.trim().split(' ').join(', ') } ).appendTo("#image-section");
-  });
+  $.each(json.items, appendToContainer);
 };
 
 $.ajax({

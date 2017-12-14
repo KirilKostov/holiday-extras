@@ -1,0 +1,37 @@
+$breakpoints: (
+  mobile: 480px,
+  tablet: 768px,
+  desktop: 960px,
+  wide: 1345px
+);
+
+@mixin media($breakpoint) {
+  @if $breakpoint == mobileonly {
+    @media (max-width: #{map-get($breakpoints, mobile)}) {
+      @content ;
+    }
+  }
+
+  @else if $breakpoint == tablet {
+    @media print, (min-width: #{map-get($breakpoints, tablet)}) {
+      @content ;
+    }
+  }
+
+  @else if $breakpoint == desktop {
+    @media print, (min-width: #{map-get($breakpoints, desktop)}) {
+      @content ;
+    }
+  }
+
+  @else if $breakpoint == wide {
+    @media (min-width: #{map-get($breakpoints, wide)}) {
+      @content ;
+    }
+  }
+  @else {
+    @media (#{$breakpoint}) {
+      @content ;
+    }
+  }
+}
