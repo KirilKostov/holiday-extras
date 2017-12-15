@@ -1,0 +1,29 @@
+main.content {
+  margin: 0 auto;
+  @include media(tablet) {
+    @include grid-width(20);
+  }
+  @include media(desktop) {
+    @include grid-width(28);
+  }
+  @include media(wide) {
+    @include grid-width(34);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+#images-container {
+  @include media(tablet) {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+  }
+}
+
+img,
+a {
+  display: block;
+}

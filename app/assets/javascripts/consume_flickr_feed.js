@@ -20,7 +20,7 @@ function createFlickrBox(item) {
 }
 
 function appendToContainer(i, item) {
-  var flickrContainer = '#image-container',
+  var flickrContainer = '#images-container',
       flickrBox = createFlickrBox(item);
 
   flickrBox.appendTo(flickrContainer);

@@ -3,7 +3,18 @@
 }
 
 .flickr-box {
-  max-width: 260px;
-  margin: 12px;
+  @include columns(16);
   border: 1px solid $black;
+  @include media(belowtablet) {
+    margin: 0 auto space(3);
+  }
+  @include media(tablet) {
+    margin-bottom: space(3);
+  }
+  @include media(desktop) {
+    @include columns(14);
+  }
+  @include media(wide) {
+    @include columns(12);
+  }
 }
