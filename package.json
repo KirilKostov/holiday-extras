@@ -1,5 +1,7 @@
 {
   "name": "holiday-extras",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "jquery-lazy": "^1.7.7"
+  }
 }

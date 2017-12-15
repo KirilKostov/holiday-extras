@@ -12,6 +12,8 @@
 //
 
 //= require jquery
+//= require jquery-lazy
+//= require init_lazy_load
 //= require consume_flickr_feed
 
 // = require_tree .
