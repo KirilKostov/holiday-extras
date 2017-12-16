@@ -2,6 +2,7 @@
 
 ## Intro:
 This is a tech challenge project. Its main goal is to consume data from Flickr's API and to display an array of cards representing this data.
+SLIM used as the templating engine - http://slim-lang.com/.
 
 ## System requirements:
 * Ruby (version used: 2.3.5);
