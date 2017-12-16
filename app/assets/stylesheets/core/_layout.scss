@@ -11,15 +11,15 @@ main.content {
   }
 
   * {
-    box-sizing: border-box;
+    @include vp-box-sizing(border-box);
   }
 }
 
 #images-container {
   @include media(tablet) {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+    @include vp-display(flex);
+    @include vp-flex-flow(row wrap);
+    @include vp-justify-content(space-around);
   }
 }
 

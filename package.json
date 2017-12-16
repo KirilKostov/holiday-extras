@@ -2,6 +2,7 @@
   "name": "holiday-extras",
   "private": true,
   "dependencies": {
-    "jquery-lazy": "^1.7.7"
+    "jquery-lazy": "^1.7.7",
+    "sass-prefix-mixins": "^1.0.2"
   }
 }
