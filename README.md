@@ -11,5 +11,6 @@ This is a tech challenge project. Its main goal is to consume data from Flickr's
 ## How to run the project locally:
 * Clone the repo - https://github.com/KirilKostov/holiday-extras
 * Navigate to the projects folder in the terminal and run ```bundle install``` - this will provide you with all the gems needed for the application
+* Run ```npm install``` - this will provide you with all npm dependencies needed for the application
 * Run ```bundle exec rails s``` to start the application's server
 * Go to 'http://localhost:3000/' in a browser of your choice to see the site (port number might vary if you have anything already running at :3000)
