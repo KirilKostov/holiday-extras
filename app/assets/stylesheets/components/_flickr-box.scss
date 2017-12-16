@@ -62,7 +62,47 @@
     }
   }
 
-  br {
-    display: none;
+  .description,
+  .tags {
+    font-size: 15px;
+    margin-top: space(2);
+    color: darken($black, 50%);
+    .title {
+      font-family: Calibri, sans-serif;
+    }
+    p {
+      margin: 0;
+      display: inline;
+    }
+  }
+
+  .description {
+    br {
+      display: none;
+    }
+  }
+
+  .tags {
+    p.tags-available {
+      display: block;
+    }
+    .tag {
+      display: inline-block;
+      margin-right: space(1);
+      max-width: 250px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding: 0 space(1);
+      background-color: lighten($blue-grey, 40%);
+      font-size: 12px;
+      @include border-radius(4px);
+
+      &:hover {
+        color: darken($white, 2%);
+        background-color: lighten($blue-grey, 30%);
+        cursor: pointer;
+      }
+    }
   }
 }

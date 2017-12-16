@@ -1,6 +1,6 @@
 function createFlickrBox(item) {
   var TAG_COUNT = 5,
-      DESCRIPTION_CUTOFF = 200,
+      MAX_CHARS = 160,
       template = $('.flickr-box-template').clone(),
       authorUrl = 'https://www.flickr.com/photos/' + item.author_id,
       authorName = item.author.match(/\("(.*)"\)/)[1],
@@ -10,22 +10,23 @@ function createFlickrBox(item) {
 
       rawDescription.innerHTML = item.description;
       description = rawDescription.querySelectorAll('p')[2] ? rawDescription.querySelectorAll('p')[2].innerHTML : 'N/A';
-      if (description.length > DESCRIPTION_CUTOFF) {
-        description = description.substring(0, DESCRIPTION_CUTOFF) + '...';
+      if (description.length > MAX_CHARS) {
+        description = description.substring(0, MAX_CHARS) + '...';
       }
 
   template.find('img').attr('src', item.media.m);
-  template.find('.photo-title').attr('href', item.link).text(item.title);
+  template.find('.photo-title').attr('href', item.link).text(item.title.substring(0, MAX_CHARS) + '...');
   template.find('.author').attr('href', authorUrl).text(authorName);
   template.find('.description p').html(description);
-  template.removeClass('flickr-box-template').addClass('flickr-box');
   if (!tags.length) {
-    template.find('.tags p').append($('<span>',{ text: 'N/A' }));
+    template.find('.tags p').text('N/A');
   } else {
     $.each(tags, (function(i, tag){
-      template.find('.tags p').append($('<span>', { text: tag}).addClass('tag'));
+      template.find('.tags p').addClass('tags-available').append($('<span>', { text: tag}).addClass('tag'));
     }));
   }
+
+  template.removeClass('flickr-box-template').addClass('flickr-box');
 
   return template;
 }
