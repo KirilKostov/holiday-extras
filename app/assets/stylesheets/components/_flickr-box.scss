@@ -3,8 +3,12 @@
 }
 
 .flickr-box {
+  padding: space(3);
+  background-color: darken($white, 2%);
   @include columns(16);
-  border: 1px solid $black;
+  @include border-radius(4px);
+  @include vp-box-shadow(0 0 10px $gray);
+
   @include media(belowtablet) {
     margin: 0 auto space(3);
   }
@@ -17,4 +21,26 @@
   @include media(wide) {
     @include columns(12);
   }
+}
+
+.flickr-photo-wrapper {
+  height: 160px;
+  overflow: hidden;
+  @include border-radius(4px);
+  @include vp-box-shadow(0 0 5px $light-gray);
+
+  .photo {
+    width: 100%;
+    min-height: 160px;
+    height: auto;
+    @include vp-transition(all .2s ease-in-out);
+    &:hover {
+      @include vp-transform(scale(1.1));
+    }
+  }
+}
+
+.flickr-content-wrapper {
+  padding-top: space(2);
+  background-color: darken($white, 2%);
 }

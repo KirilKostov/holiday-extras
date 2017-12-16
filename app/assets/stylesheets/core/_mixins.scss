@@ -44,6 +44,19 @@
   width: $column-count * $column-width;
 }
 
+// Vendor prefixing for shorthand properties (not included in NPMs VP handler)
+@mixin vendor-prefixes($property, $value) {
+  -webkit-#{$property}: $value;
+     -moz-#{$property}: $value;
+      -ms-#{$property}: $value;
+       -o-#{$property}: $value;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  @include vendor-prefixes(border-radius, $radius);
+}
+
 @function space($multiplier) {
   @return $multiplier * 6px
 }
