@@ -16,13 +16,15 @@ main.content {
 }
 
 #images-container {
-  margin-top: space(5);
+  height: calc(100vh - 100px);
+  overflow: auto;
+  margin-top: space(3);
   @include media(tablet) {
     @include vp-display(flex);
     @include vp-flex-flow(row wrap);
     @include vp-justify-content(space-around);
   }
   @include media(desktop) {
-    margin-top: space(7);
+    margin-top: space(5);
   }
 }

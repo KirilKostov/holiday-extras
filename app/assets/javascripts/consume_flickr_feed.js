@@ -8,21 +8,21 @@ function createFlickrBox(item) {
       description,
       tags = item.tags ? item.tags.trim().split(' ').splice(0, TAG_COUNT) : [];
 
-      rawDescription.innerHTML = item.description;
-      description = rawDescription.querySelectorAll('p')[2] ? rawDescription.querySelectorAll('p')[2].innerHTML : 'N/A';
-      if (description.length > MAX_CHARS) {
-        description = description.substring(0, MAX_CHARS) + '...';
-      }
+  rawDescription.innerHTML = item.description;
+  description = rawDescription.querySelectorAll('p')[2] ? rawDescription.querySelectorAll('p')[2].innerHTML : 'N/A';
+  if (description.length > MAX_CHARS) {
+    description = description.substring(0, MAX_CHARS) + '...';
+  }
 
-  template.find('img').attr('src', item.media.m);
+  template.find('img').attr('data-src', item.media.m).attr('src', item.media.m);
   template.find('.photo-title').attr('href', item.link).text(item.title.substring(0, MAX_CHARS) + '...');
   template.find('.author').attr('href', authorUrl).text(authorName);
   template.find('.description p').html(description);
   if (!tags.length) {
     template.find('.tags p').text('N/A');
   } else {
-    $.each(tags, (function(i, tag){
-      template.find('.tags p').addClass('tags-available').append($('<span>', { text: tag}).addClass('tag'));
+    $.each(tags, (function (i, tag) {
+      template.find('.tags p').addClass('tags-available').append($('<span>', { text: tag }).addClass('tag'));
     }));
   }
 
@@ -42,8 +42,26 @@ function jsonFlickrFeed(json) {
   $.each(json.items, appendToContainer);
 };
 
-$.ajax({
-  url: 'https://api.flickr.com/services/feeds/photos_public.gne',
-  dataType: 'jsonp',
-  data: { 'format': 'json' }
-});
+$(document).ready(function () {
+  var URL = '',
+      PER_PAGE = 20,
+      CURRENT_PAGE = 1;
+
+  function fetchData(url) {
+    $.ajax({
+      url: 'https://api.flickr.com/services/feeds/photos_public.gne' + url,
+      dataType: 'jsonp',
+      data: { 'format': 'json' }
+    });
+  }
+
+  fetchData(URL);
+
+  $('#images-container').scroll(function () {
+    if ($(this)[0].scrollHeight - $(this).scrollTop() == $(this).outerHeight()) {
+      CURRENT_PAGE++;
+      URL = '?per_page=' + PER_PAGE + '&page=' + CURRENT_PAGE;
+      fetchData(URL);
+    }
+  });
+})

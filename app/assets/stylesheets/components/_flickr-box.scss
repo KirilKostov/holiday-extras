@@ -67,8 +67,9 @@
     font-size: 15px;
     margin-top: space(2);
     color: darken($black, 50%);
-    .title {
+    .label {
       font-family: Calibri, sans-serif;
+      color: $light-grey;
     }
     p {
       margin: 0;
