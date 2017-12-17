@@ -14,7 +14,7 @@ function createFlickrBox(item) {
     description = description.substring(0, MAX_CHARS) + '...';
   }
 
-  template.find('img').attr('data-src', item.media.m).attr('src', item.media.m);
+  template.find('.photo').attr({'src': "<%= asset_path 'loading.gif' %>", 'data-src': item.media.m});
   template.find('.photo-title').attr('href', item.link).text(item.title.substring(0, MAX_CHARS) + '...');
   template.find('.author').attr('href', authorUrl).text(authorName);
   template.find('.description p').html(description);
@@ -36,6 +36,7 @@ function appendToContainer(i, item) {
       flickrBox = createFlickrBox(item);
 
   flickrBox.appendTo(flickrContainer);
+  $('.photo').Lazy();
 };
 
 function jsonFlickrFeed(json) {
@@ -58,6 +59,7 @@ $(document).ready(function () {
   fetchData(URL);
 
   $('#images-container').scroll(function () {
+    $('.photo').Lazy();
     if ($(this)[0].scrollHeight - $(this).scrollTop() == $(this).outerHeight()) {
       CURRENT_PAGE++;
       URL = '?per_page=' + PER_PAGE + '&page=' + CURRENT_PAGE;
