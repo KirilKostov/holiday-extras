@@ -21,4 +21,4 @@ group :development do
   gem 'sqlite3'
 end
 
-gem 'pg', group: :production # Added postgres and made it production only.
+gem 'pg', group: :production

@@ -11,10 +11,22 @@
 
 ## How to run the project locally:
 * Clone the repo - https://github.com/KirilKostov/holiday-extras
-* Open the terminal and run ```gem install bundler```, you might need to run ```xcode-select --install``` if you are getting ruby related errors
-* Navigate to the projects folder in the terminal and run ```bundle install``` - this will provide you with all the gems needed for the application
-* Run ```npm install``` - this will provide you with all npm dependencies needed for the application
-* Run ```bundle exec rails s``` to start the application's server
+* Open the terminal and run:
+
+    ```gem install bundler```
+* Navigate to the projects folder in the terminal and run:
+
+    ```bundle install --without production```
+
+    This will provide you with all the gems needed for the application.
+* Run:
+
+    ```npm install```
+
+    This will provide you with all npm dependencies needed for the application.
+* To start the application's server run:
+
+    ```bundle exec rails s```
 * Go to 'http://localhost:3000/' in a browser of your choice to see the site (port number might vary if you have anything already running at :3000)
 
 ## Heroku:
